@@ -32,6 +32,7 @@ public class MainConverter {
 		System.out.println("----------------------------");
 		System.out.println("Your weight in " + newType + " = " + newWeight);
 		System.out.println("----------------------------");
+		System.out.println("Run program again to try another weight!");
 		
 		weightInput.close();
 	}
@@ -65,5 +66,6 @@ public class MainConverter {
 		}
 	}
 }
+
 
 
