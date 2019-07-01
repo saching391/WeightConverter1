@@ -2,7 +2,7 @@ package package1;
 
 import java.util.Scanner;
 
-public class MainConverter {
+public class Main {
 	
 	static String type;
 	static double userWeight;
@@ -16,9 +16,9 @@ public class MainConverter {
 		System.out.println("Type 'lb' or 'kg': ");
 		System.out.println("----------------------------");
 		type = weightInput.nextLine();
-		verifyType(type);
+		Helper.verifyType(type);
 		
-		getnewType(type);
+		Helper.getnewType(type);
 		
 		System.out.println("----------------------------");
 		System.out.println("Enter weight value in " + type);
@@ -27,7 +27,7 @@ public class MainConverter {
 		userWeight = weightInput.nextDouble();
 		
 		
-		convert(newType);
+		convertFunc.convert(newType);
 		
 		System.out.println("----------------------------");
 		System.out.println("Your weight in " + newType + " = " + newWeight);
@@ -37,9 +37,26 @@ public class MainConverter {
 		weightInput.close();
 	}
 	
+}
+
+public class convertFunc {
+	static void convert(String s) {
+		if (s.contentEquals("lb")) {
+			Main.newWeight = Main.userWeight/.453592;
+		}
+		else if (s.contentEquals("kg")) {
+			Main.newWeight = Main.userWeight*.453592;
+		}
+	}
+	
+	
+}
+
+public class Helper {
+	
 	static void verifyType(String s) {
 		if (s.contentEquals("lb") || s.contentEquals("kg")) {
-			type = s;
+			Main.type = s;
 		} 
 		else {
 			System.out.println("You must enter either lb or kg. Run program again to restart.");
@@ -47,25 +64,14 @@ public class MainConverter {
 		}
 	}
 	
-	
-	static void convert(String s) {
-		if (s.contentEquals("lb")) {
-			newWeight = userWeight/.453592;
-		}
-		else if (s.contentEquals("kg")) {
-			newWeight = userWeight*.453592;
-		}
-	}
-
 	static void getnewType(String s) {
 		if (s.contentEquals("lb")){
-			newType = "kg";
+			Main.newType = "kg";
 		}
 		else if (s.contentEquals("kg")) {
-			newType = "lb";
+			Main.newType = "lb";
 		}
 	}
 }
-
 
 
