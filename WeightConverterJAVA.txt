@@ -1,0 +1,77 @@
+package package1;
+
+import java.util.Scanner;
+
+public class Main {
+	
+	static String type;
+	static double userWeight;
+	static String newType = "";
+	static double newWeight = 0;
+
+	
+	public static void main(String[] args) {
+		
+		Scanner weightInput = new Scanner(System.in);
+		System.out.println("Type 'lb' or 'kg': ");
+		System.out.println("----------------------------");
+		type = weightInput.nextLine();
+		Helper.verifyType(type);
+		
+		Helper.getnewType(type);
+		
+		System.out.println("----------------------------");
+		System.out.println("Enter weight value in " + type);
+		System.out.println("----------------------------");
+		
+		userWeight = weightInput.nextDouble();
+		
+		
+		convertFunc.convert(newType);
+		
+		System.out.println("----------------------------");
+		System.out.println("Your weight in " + newType + " = " + newWeight);
+		System.out.println("----------------------------");
+		System.out.println("Run program again to try another weight!");
+		
+		weightInput.close();
+	}
+	
+}
+
+public class convertFunc {
+	static void convert(String s) {
+		if (s.contentEquals("lb")) {
+			Main.newWeight = Main.userWeight/.453592;
+		}
+		else if (s.contentEquals("kg")) {
+			Main.newWeight = Main.userWeight*.453592;
+		}
+	}
+	
+	
+}
+
+public class Helper {
+	
+	static void verifyType(String s) {
+		if (s.contentEquals("lb") || s.contentEquals("kg")) {
+			Main.type = s;
+		} 
+		else {
+			System.out.println("You must enter either lb or kg. Run program again to restart.");
+			System.exit(0);
+		}
+	}
+	
+	static void getnewType(String s) {
+		if (s.contentEquals("lb")){
+			Main.newType = "kg";
+		}
+		else if (s.contentEquals("kg")) {
+			Main.newType = "lb";
+		}
+	}
+}
+
+
